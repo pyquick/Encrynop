@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Version</key>
+    <array>
+        <string>1.0</string>
+        <comment>This is the version of the as1</comment>
+    </array>
+    <key>Date</key>
+    <array>
+        <string>2025-06-28</string>
+        <comment></comment>
+    </array>
+</dict>
