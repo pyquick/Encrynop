@@ -21,6 +21,12 @@ class Limit_Size:
     def get_one_file_size(self,file_path):
         """计算单个文件的大小"""
         return os.path.getsize(file_path)
+    def list_directory(self):
+        if not os.path.exists(self.path):
+            raise Panic("List_directory", f"Path '{self.path}' does not exist", 3, "FileNotFoundError")
+        if not os.path.isdir(self.path):
+            raise Panic("List_directory", f"Path '{self.path}' is not a directory", 3, "NotADirectoryError")
+        return os.listdir(self.path)
     def convert_size(size_bytes):
         """将字节转换为可读格式 (KB, MB, GB)"""
         for unit in ['B', 'KB', 'MB', 'GB']:
@@ -28,14 +34,28 @@ class Limit_Size:
                 return f"{size_bytes:.2f} {unit}"
             size_bytes /= 1024.0
         return f"{size_bytes:.2f} TB"
+    def to_bytes(value, unit):
+        units = {
+            'B': 1,
+            'KB': 1024,
+            'MB': 1024**2,
+            'GB': 1024**3,
+            'TB': 1024**4,
+            'PB': 1024**5,
+            'EB': 1024**6,
+            'ZB': 1024**7,
+            'YB': 1024**8
+        }
+        unit = unit.upper()  # 处理大小写不敏感
+        if unit not in units:
+            raise Panic("to_bytes","incorrunt unit.",4,"typeerror").raise_panic()
+        return value * units[unit]
     def limit_size_with_folder(self):
         #初级超过返回弹出警告,并报告warning panic
-        self.limit_size_fo=self.convert_size(self.folder_limit)
-        #去掉后面所有非数字字符
-        try:
-            self.limit_size_fo= float(str(self.limit_size_fo).rstrip('abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ '))
-        except ValueError:
-            a=LogManager("limit(limit_size_with_folder)","ERROR")
-            a.auto("limit_size_fo is not a number")
-            raise Panic("limit_size_with_folder:limit_size_fo is not a number",2,"ValueError").raise_panic()
+        self.log_folder_size=self.get_folder_size()
+        #...
+
+        
+
+            
         

@@ -30,16 +30,11 @@ class ColoredFormatter(logging.Formatter):
 class LogManager:
     
     def __init__(self,log_name,log_level=str):
-        self.log_level = log_level 
-        self.log_level_list=list(self.log_level)
-        for self.i in range(len(self.log_level)):
-            self.log_level_list[self.i]=self.log_level[self.i].upper()
-        self.log_level=""
-        for self.i in self.log_level_list:
-            self.log_level+=self.i
+        self.log_level = log_level.upper()
+        
         self.log_name = log_name
         if(log_level is None):
-            raise Panic(f"Log_level must str,not None.",3,"LogManager").raise_panic()
+            raise Panic("LogManager__init__",f"Log_level must str,not None.",3,"LogManager").raise_panic()
         # 日志级别映射
         self.LEVELS = {
             "DEBUG": logging.DEBUG,
@@ -60,8 +55,7 @@ class LogManager:
             '%(asctime)s - %(process_name)s - %(name)s  - %(levelname)s - %(message)s'   
         )
         self.file_handler = logging.FileHandler(self.path)
-        if log_level!="info":
-            self.file_handler.setLevel(self.LEVELS[self.log_level])
+        self.file_handler.setLevel(self.LEVELS[self.log_level])
         self.file_formatter = self.formatter
         self.file_handler.setFormatter(self.file_formatter)
         # 创建控制台处理器
@@ -72,31 +66,32 @@ class LogManager:
         self.console_handler.setLevel(self.LEVELS[self.log_level])
         self.console_handler.setFormatter(self.console_formatter)
         # 添加处理器
+        
         self.logger.addHandler(self.file_handler)
         self.logger.addHandler(self.console_handler)
     def info(self, msg):
-        if(self.log_level!="info" and self.log_level is not None):
-            raise Panic(f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
+        if(self.log_level!="info".upper() and self.log_level is not None):
+            raise Panic("info",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.info(msg)
     def warning(self, msg):
-        if(self.log_level!="warning" and self.log_level is not None):
-            raise Panic(f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
+        if(self.log_level!="warning".upper() and self.log_level is not None):
+            raise Panic("warning",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.warning(msg)
     def error(self, msg):
-        if(self.log_level!="error" and self.log_level is not None):
-            raise Panic(f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
+        if(self.log_level!="error".upper() and self.log_level is not None):
+            raise Panic("error",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.error(msg)
     def debug(self, msg):
-        if(self.log_level!="debug" and self.log_level is not None):
-            raise Panic(f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
+        if(self.log_level!="debug".upper() and self.log_level is not None):
+            raise Panic("debug",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.debug(msg)
     def critical(self, msg):
-        if(self.log_level!="critical"):
-            raise Panic(f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
+        if(self.log_level!="critical".upper()):
+            raise Panic("critical",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.critical(msg)
     def auto(self, msg):
         if self.log_level is  None:
-            raise Panic(f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
+            raise Panic("auto",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         elif(self.log_level=="DEBUG".upper()):
             self.logger.debug(msg)
         elif(self.log_level=="info".upper()):
@@ -109,7 +104,7 @@ class LogManager:
             self.logger.critical(msg)
             self.logger.critical(msg)
         else:
-            raise Panic(f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
+            raise Panic("auto",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
     
 
     
