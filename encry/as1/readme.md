@@ -39,13 +39,15 @@ Usage(based):<br/>
 from encry.as1.based import *
 a = Encry(data)
 ```
-可以用: **encry**或**encry_16**,其中encry基于**base64**,encry_16基于**base16**
+可以用: **encry**,**encry_16**,**encry_32**,**encry_85**,其中encry基于**base64**,encry_16基于**base16**
 ,如下
 ```python
 from encry.as1.based import *
 a = Encry(data)
 a.encry(data)
 a.encry_16(data)
+a.encry_32(data)
+a.encry_85(data)
 ```
 decry使用类似:
 ```python
@@ -58,4 +60,6 @@ from encry.as1.based import *
 a = Decry(data)
 a.decry(data)
 a.decry_16(data)
+a.decry_32(data)
+a.decry_85(data)
 ```

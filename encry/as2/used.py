@@ -1,19 +1,8 @@
 import encry.as1.used
-lookup={
-    0:"0",
-    1:"1",
-    10:"2",
-    11:"3",
-    100:"4",
-    101:"5",
-    110:"6",
-    111:"7",
-    1000:"8",
-    1001:"9",
-    1010:"A",
-    1011:"B",
-    1100:"C",
-    1101:"D",
-    1110:"E",
-    1111:"F",
-}
+
+
+
+def encry_auto(data,mode):
+    #mode:standard,professional,high,max
+    if(mode=="standard"):
+        pass
