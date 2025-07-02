@@ -45,8 +45,12 @@ class LogManager:
         }
         self.logger = logging.getLogger(self.log_name)
         self.logger.setLevel(self.LEVELS[self.log_level])
-            
-        self.path=f"/Users/{getpass.getuser()}/.encry/log/encry_{log_level}.log"
+        if os.name == 'nt':  
+            self.path = os.path.join(os.environ["APPDATA"],".encry","log")
+        elif os.name == 'posix':
+            self.path=f"/Users/{getpass.getuser()}/.encry/log/encry_{log_level}.log"
+        else:
+            self.path = f"/var/log/encry/log/encry_{log_level}.log"
         try:
             os.makedirs(os.path.dirname(self.path))
         except Exception:

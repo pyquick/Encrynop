@@ -1,8 +1,10 @@
-#生成as1符合规范的规定(让gui识别)
+from encry.panic.panic import *
 from .used import *
 contact_max_auto="Ofin:||%(level)s!?PUA:||%(tem)s"
 contact="Ofin:||%(level)s"
 def gen(level=str,tem=str|None)->bytes:
+    if(level!="primary"or level!="standard"or level!="high"or level!="prof"or level!="max"or level!="max_auto"):
+        raise Panic("gen","Invalid level",4,"TypeError").raise_panic()
     leveled=encry_standard(level).decode()
     if(level=="max_auto"):
         tem=encry_prof(str(tem)).decode()
@@ -11,7 +13,7 @@ def gen(level=str,tem=str|None)->bytes:
         tem=None
         return encry_standard(contact % {"level":leveled})
 
-def regen(key=bytes)->dict:
+def to_gen(key=bytes)->dict:
     rege={
         "level":"",
         "tem":None
