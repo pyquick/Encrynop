@@ -33,7 +33,7 @@ class LogManager:
         self.log_level = log_level.upper()
         
         self.log_name = log_name
-        if(log_level is None):
+        if(log_level is None or (log_level!="DEBUG" and log_level!="INFO" and log_level!="WARNING" and log_level!="ERROR" and log_level!="CRITICAL")):
             raise Panic("LogManager__init__",f"Log_level must str,not None.",3,"LogManager").raise_panic()
         # 日志级别映射
         self.LEVELS = {
@@ -41,7 +41,7 @@ class LogManager:
             "INFO": logging.INFO,
             "WARNING": logging.WARNING,
             "ERROR": logging.ERROR,
-            "CRITICAL": logging.CRITICAL
+            "CRITICAL": logging.CRITICAL,
         }
         self.logger = logging.getLogger(self.log_name)
         self.logger.setLevel(self.LEVELS[self.log_level])

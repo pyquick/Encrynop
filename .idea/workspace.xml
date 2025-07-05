@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="f4f0d2f1-8c6d-46af-a7ec-fd3c52dd8478" name="更改" comment="feat(encry): 添加 as1 加密模块">
+      <change afterPath="$PROJECT_DIR$/encry/__init__.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/as2/based.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/as2/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/as2/version.plist" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/as3/de_based.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/as3/en_based.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/as3/genkey.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/as3/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/as3/used.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/as3/ws.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/hash/based.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/log/error.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/log/file.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/log/info.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/log/warning.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/panic/panic.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/encry/version.history" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/readme.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/test/hash.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encry/as1/based.py" beforeDir="false" afterPath="$PROJECT_DIR$/encry/as1/based.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encry/as1/readme.md" beforeDir="false" afterPath="$PROJECT_DIR$/encry/as1/readme.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encry/as1/used.py" beforeDir="false" afterPath="$PROJECT_DIR$/encry/as1/used.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encry/as1/version.plist" beforeDir="false" afterPath="$PROJECT_DIR$/encry/as1/version.plist" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/encry/as2/used.py" beforeDir="false" afterPath="$PROJECT_DIR$/encry/as2/used.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="Python Script" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;pyquick&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/pyquick/Encrynop.git&quot;,
+    &quot;accountId&quot;: &quot;1817861c-44f0-42b9-a226-d292161e1082&quot;
+  }
+}</component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$PROJECT_DIR$/encry/as1/encry.py" root0="FORCE_HIGHLIGHTING" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="DEPENDENCY_CHECKER_PROBLEMS_TAB" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2z8B4aaB2F83KOsGrA1NJSwdmXe" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "DefaultHtmlFileTemplate": "HTML File",
+    "Python.encry.executor": "Run",
+    "Python.hash.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.panic.executor": "Run",
+    "Python.used.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.Jupyter Settings",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="PyConsoleOptionsProvider">
+    <option name="myPythonConsoleState">
+      <console-settings module-name="Encrynop" is-module-sdk="true">
+        <option name="myUseModuleSdk" value="true" />
+        <option name="myModuleName" value="Encrynop" />
+      </console-settings>
+    </option>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-6be00b7b0f42-JavaScript-PY-252.23309.36" />
+        <option value="bundled-python-sdk-1eec2b582c1f-32658010c498-com.jetbrains.pycharm.pro.sharedIndexes.bundled-PY-252.23309.36" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="默认任务">
+      <changelist id="f4f0d2f1-8c6d-46af-a7ec-fd3c52dd8478" name="更改" comment="" />
+      <created>1751102629544</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1751102629544</updated>
+      <workItem from="1751102630974" duration="7610000" />
+      <workItem from="1751173498590" duration="921000" />
+      <workItem from="1751176495572" duration="13367000" />
+      <workItem from="1751204301559" duration="2605000" />
+      <workItem from="1751265794120" duration="4833000" />
+    </task>
+    <task id="LOCAL-00001" summary="feat(encry): 添加 as1 加密模块">
+      <option name="closed" value="true" />
+      <created>1751117714433</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1751117714433</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="feat(encry): 添加 as1 加密模块" />
+    <option name="LAST_COMMIT_MESSAGE" value="feat(encry): 添加 as1 加密模块" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/Encrynop$hash.coverage" NAME="hash 覆盖结果" MODIFIED="1751201441411" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test" />
+    <SUITE FILE_PATH="coverage/Encrynop$panic.coverage" NAME="panic 覆盖结果" MODIFIED="1751269052160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encry/panic" />
+    <SUITE FILE_PATH="coverage/Encrynop$used.coverage" NAME="used 覆盖结果" MODIFIED="1751198955974" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encry/as2" />
+    <SUITE FILE_PATH="coverage/Encrynop$main.coverage" NAME="main 覆盖结果" MODIFIED="1751271795211" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/Encrynop$encry.coverage" NAME="encry 覆盖结果" MODIFIED="1751103516116" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/encry/as1" />
+  </component>
+</project>

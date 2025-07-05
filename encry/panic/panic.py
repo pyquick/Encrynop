@@ -1,6 +1,6 @@
 from termcolor import cprint
 from colorama import init
-from encry.log.log import *
+
 init()
 class Panic(BaseException):
     def __init__(self,name,log,level=int,type_panic=str):

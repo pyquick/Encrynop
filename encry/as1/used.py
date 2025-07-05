@@ -1,6 +1,6 @@
 from encry.as1.based import *
 from encry.log.log import *
-from encry.log.panic import *
+from encry.log.crash import *
 
 def encry_64(data)->bytes:
     try:

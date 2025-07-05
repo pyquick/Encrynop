@@ -2,7 +2,7 @@ import os,shutil,getpass
 from encry.panic.panic import *
 from .log import LogManager
 class Limit_Size:
-    super.__init__()
+    
     #需要获取文件夹总大小,每一个文件大小.
     def __init__(self,folder_limit,file_limit):
         self.folder_limit=folder_limit
@@ -53,7 +53,11 @@ class Limit_Size:
     def limit_size_with_folder(self):
         #初级超过返回弹出警告,并报告warning panic
         self.log_folder_size=self.get_folder_size()
-        #...
+        self.limit_size=self.folder_limit
+        #差距小于10000bytes则Panic warning
+        if self.log_folder_size>self.log_folder_size and abs(self.log_folder_size-self.log_folder_size)<10000:
+            Panic("limit_size_with_folder","Log folder out of limit.\nPlease check some ")
+            
 
         
 
