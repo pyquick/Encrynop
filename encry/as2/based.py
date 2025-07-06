@@ -42,6 +42,7 @@ lookup_check={
 }
 lookup_check16={v: k for k, v in lookup_check.items()}
 class Convert_Dec:
+    
     def __init__(self, data,convert_base=int,to_convert=int):
         self.data = str(data) #数据
         self.to_convert = to_convert #要被转换的进制
@@ -49,6 +50,8 @@ class Convert_Dec:
         self.result=[]
     def check(self)->bool:
         try:
+            if not isinstance(self.convert_base,int)or not isinstance(self.to_convert,int):
+                return False
             self.data_list=list(str(self.data))
             if(self.convert_base>16 or self.to_convert>16): return False
             for i in self.data_list:
@@ -62,6 +65,7 @@ class Convert_Dec:
         if not self.check():
             self.log.error("Decimal data is wrong,will be panic")
             raise Panic("Convert %(func)s"% {"func":sys._getframe().f_code.co_name},"Decimal data is wrong",4,"DecimalError").raise_panic()
+    
     def dec10_convert_to_any(self):
         if(self.check()):
             self.log=LogManager("Convert %(func)s" % {"func":sys._getframe().f_code.co_name},"ERROR")
@@ -172,8 +176,23 @@ class Convert_Dec:
         for i in self.result:
             self.result_send+=i
         return self.result_send
-    
-    
+    def dec_any_to_10(self):
+        if(self.to_convert!=10):
+            self.log=LogManager("Convert %(func)s" % {"func":sys._getframe().f_code.co_name},"ERROR")
+            self.log.auto("Decimal data is wrong,will be panic")
+            raise Panic("Convert %(func)s" % {"func":sys._getframe().f_code.co_name},"Decimal data is wrong",3,"DecimalError").raise_panic()
+        #运用大pow法
+        self.data_list=list(str(self.data))
+        for i in range(len(self.data_list)):
+            self.data_list[i]=lookup_check[self.data_list[i]]
+        self.data_list=self.data_list[::-1]
+        self.result=0
+        for i in range(len(self.data_list)):
+            self.result+=pow(self.convert_base,i)*self.data_list[i]
+        return self.result
+    def convert(self):
+        pass
+        
     
             
         

@@ -106,7 +106,6 @@ class LogManager:
             self.logger.error(msg)
         elif(self.log_level=="critical".upper()):
             self.logger.critical(msg)
-            self.logger.critical(msg)
         else:
             raise Panic("auto",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
     

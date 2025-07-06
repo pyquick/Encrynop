@@ -5,4 +5,7 @@ from .as2.used import *
 from .as2.based import *
 from .panic.panic import *
 from .log.log import *
-import os,getpass,shutil,sys
+import os,getpass,shutil,sys,threading
+import time
+a=LogManager("encry__init__","INFO")
+a.info("Load successfully")
