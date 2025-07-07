@@ -1,8 +1,13 @@
 from termcolor import cprint
 from colorama import init
-
 init()
-class Panic(BaseException):
+#NEW:
+#Panic: (FROM ENCRY.PANIC.PANIC)
+#SOURCE: xxx(func)
+# XXXERROR: XXX
+#THis Panic is very serious.
+#Please report https://github.com/pyquick/pyquick/issues/ to report this panic.
+class Panic(Exception):
     def __init__(self,name,log,level=int,type_panic=str):
         self.log =log
         self.name=name
@@ -20,8 +25,19 @@ class Panic(BaseException):
             3:'Serious',
             4:'Panic',
         }
-        cprint(f'Panic:{self.type_panic}({level_lookup[self.level]})[{self.name}]' ,'red',)
+#NEW:
+#Panic: (FROM ENCRY.PANIC.PANIC)
+#LEVEL: 1-Warning,2-Error,3-Serious,4-Panic
+#SOURCE: xxx(func)
+# XXXERROR: XXX
+#THis Panic is very serious.
+#Please report https://github.com/pyquick/pyquick/issues/ to report this panic.
+        #cprint(f'Panic:{self.type_panic}({level_lookup[self.level]})[{self.name}]' ,'red',)
+        cprint("PANIC: (FROM ENCRY.PANIC.PANIC)",'red')
+        cprint(f"LEVEL: {level_lookup[self.level]}",'red')
+        cprint(f'SOURCE: {self.name}','red')
         contact=self.panic(self.log)
+        cprint(f'{self.type_panic}:', 'red',None,["reverse","underline","blink"])
         for i in contact:
             cprint(i.strip(),'red',None,["reverse","underline","blink"])
             

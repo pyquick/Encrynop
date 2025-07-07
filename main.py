@@ -1,4 +1,5 @@
-import traceback
-from encry.log import *
-log=LogManager("encry",log_level="CRITICAL")
-log.auto("starting")
+from encry import *
+a=ASCII()
+print(a.from_ascii(97))
+
+

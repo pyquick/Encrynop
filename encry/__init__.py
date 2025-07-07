@@ -7,5 +7,3 @@ from .panic.panic import *
 from .log.log import *
 import os,getpass,shutil,sys,threading
 import time
-a=LogManager("encry__init__","INFO")
-a.info("Load successfully")
