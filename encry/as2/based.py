@@ -321,7 +321,7 @@ class Convert_Dec:
             log=LogManager("Convert %(func)s _CRITICAL" % {"func":func},"CRITICAL")
             log.critical(str(e))
             raise Panic("Convert %(func)s"% {"func":func},f"Critical Error:{str(e)}",4,"Exception").raise_panic()
-    def convert(self)->tuple:
+    def convert(self):
         import time
         try:
             time_start=time.perf_counter()
@@ -401,7 +401,7 @@ class Convert_Dec:
                 self.fina=self.dec10_convert_to_any()
             time_end=time.perf_counter()
             log_info.auto(f"USING TIME:{time_end-time_start:.6f}s")
-            return self.fina,time_end-time_start
+            return self.fina
         except Exception as e:
             func=sys._getframe().f_code.co_name
             log_cri=LogManager("Convert %(func)s _CRITICAL" % {"func":func},"CRITICAL")

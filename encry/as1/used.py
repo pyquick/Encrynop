@@ -292,7 +292,7 @@ def decry_max(data)->bytes:
 def encry_max_auto(data,tem=int)->bytes:
     try:
         log=LogManager("encry_max_auto","INFO")
-        if(tem>=5 and tem<12):
+        if(tem>=4 and tem<12):
             lin_log=LogManager("encry_max_auto_lin","WARNING")
             lin_log.auto("Temperature is too high")
             Panic("encry_max_auto","Temperature is too high",1,"WARNING").raise_panic()
@@ -305,21 +305,25 @@ def encry_max_auto(data,tem=int)->bytes:
             log.auto("data is not bytes, encoding...")
             data=data.encode()
             log.auto("data encoded")
-        cal=(pow(tem,3)+pow(tem,2))*2+1
-        for i in range(pow(tem,3)):
+        cal=(pow(tem,4)+pow(tem,2))*3+1
+        for i in range(pow(tem,4)):
             if(i==0):
                 data_encryed=encry_85(data)
-                log.auto(contact_encry % {"contact":"Encry","based":"85","time":i*2+1,"total":cal})
+                log.auto(contact_encry % {"contact":"Encry","based":"85","time":i*3+1,"total":cal})
             else:
                 data_encryed = encry_85(data_encryed)
-                log.auto(contact_encry % {"contact":"Encry","based":"85","time":i*2+1,"total":cal})
+                log.auto(contact_encry % {"contact":"Encry","based":"85","time":i*3+1,"total":cal})
             data_encryed = encry_64(data_encryed)
-            log.auto(contact_encry % {"contact":"Encry","based":"64","time":i*2+2,"total":cal})
+            log.auto(contact_encry % {"contact":"Encry","based":"64","time":i*3+2,"total":cal})
+            data_encryed = encry_32(data_encryed)
+            log.auto(contact_encry % {"contact":"Encry","based":"64","time":i*3+3,"total":cal})
         for i in range(pow(tem,2)):
+            data_encryed=encry_85(data_encryed)
+            log.auto(contact_encry % {"contact":"Encry","based":"85","time":i*3+1+pow(tem,4)*3,"total":cal})
             data_encryed=encry_32(data_encryed)
-            log.auto(contact_encry % {"contact":"Encry","based":"32","time":i*2+1+pow(tem,3)*2,"total":cal})
+            log.auto(contact_encry % {"contact":"Encry","based":"32","time":i*3+2+pow(tem,3)*3,"total":cal})
             data_encryed = encry_64(data_encryed)
-            log.auto(contact_encry % {"contact":"Encry","based":"64","time":i*2+2+pow(tem,3)*2,"total":cal})
+            log.auto(contact_encry % {"contact":"Encry","based":"64","time":i*3+3+pow(tem,3)*3,"total":cal})
         data_encryed = encry_16(data_encryed)
         log.auto(contact_encry % {"contact":"Encry","based":"16","time":cal,"total":cal})
         log.auto("Done.")
@@ -329,7 +333,7 @@ def encry_max_auto(data,tem=int)->bytes:
 def decry_max_auto(data,tem=int)->bytes:
     try:
         log=LogManager("decry_max_auto","INFO")
-        if(tem>=5 and tem<12):
+        if(tem>=4 and tem<12):
             lin_log=LogManager("encry_max_auto_lin","WARNING")
             lin_log.auto("Temperature is too high")
             Panic("decry_max_auto","Temperature is too high",1,"WARNING").raise_panic()
@@ -342,19 +346,24 @@ def decry_max_auto(data,tem=int)->bytes:
             log.auto("data is not bytes, encoding...")
             data=data.encode()
             log.auto("data encoded")
-        cal=(pow(tem,3)+pow(tem,2))*2+1
+        cal=(pow(tem,4)+pow(tem,2))*3+1
         data_decryed = decry_16(data)
         log.auto(contact_encry % {"contact":"Decry","based":"16","time":1,"total":cal})
         for i in range(pow(tem,2)):
+            #85 32 64
             data_decryed = decry_64(data_decryed)
-            log.auto(contact_encry % {"contact":"Decry","based":"64","time":i*2+2,"total":cal})
+            log.auto(contact_encry % {"contact":"Decry","based":"64","time":i*3+2,"total":cal})
             data_decryed=decry_32(data_decryed)
-            log.auto(contact_encry % {"contact":"Decry","based":"32","time":i*2+3,"total":cal})
-        for i in range(pow(tem,3)):
-            data_decryed = decry_64(data_decryed)
-            log.auto(contact_encry % {"contact":"Decry","based":"64","time":pow(tem,2)*2+1+i*2,"total":cal})
+            log.auto(contact_encry % {"contact":"Decry","based":"32","time":i*3+3,"total":cal})
             data_decryed = decry_85(data_decryed)
-            log.auto(contact_encry % {"contact":"Decry","based":"85","time":pow(tem,2)*2+2+i*2,"total":cal})
+            log.auto(contact_encry % {"contact":"Decry","based":"85","time":i*3+4,"total":cal})
+        for i in range(pow(tem,4)):
+            data_decryed = decry_32(data_decryed)
+            log.auto(contact_encry % {"contact":"Decry","based":"32","time":pow(tem,2)*3+2+i*3,"total":cal})
+            data_decryed = decry_64(data_decryed)
+            log.auto(contact_encry % {"contact":"Decry","based":"64","time":pow(tem,2)*3+3+i*3,"total":cal})
+            data_decryed = decry_85(data_decryed)
+            log.auto(contact_encry % {"contact":"Decry","based":"85","time":pow(tem,2)*3+4+i*3,"total":cal})
         log.auto("Done.")
         return data_decryed
     except Exception as e:

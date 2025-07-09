@@ -1,5 +1,4 @@
-from encry import *
-a=ASCII()
-print(a.from_ascii(97))
-
-
+#from encry import *
+a="124|                |"
+a=a.rstrip(" | ")
+print(a)
