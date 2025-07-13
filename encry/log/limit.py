@@ -3,8 +3,9 @@ from traceback import format_list
 from encry.panic.panic import *
 from .log import LogManager
 import threading,sys
+
 class Limit_Size:
-    def __init__(self,folder_limit=int,file_limit=int):
+    def __init__(self,folder_limit: int,file_limit: int):
         self.folder_limit=folder_limit
         self.file_limit=file_limit
         self.path=f"/Users/{getpass.getuser()}/.encry/log"
@@ -98,7 +99,7 @@ class Limit_Size:
                 self.debug.debug(f"Deleted {self.file_names[i]}.")
         self.file_names=self.get_all_file_name()
         if self.log_folder_size<self.folder_limit:
-            self.debug.auto("Great! Log folder size is under limit.")
+            #self.debug.auto("Great! Log folder size is under limit.")
             return
         if self.log_folder_size>self.log_folder_size and abs(self.log_folder_size-self.log_folder_size)<10000:
             self.warn.warning(f"Log folder out of limit.\nPlease check some logs.Size:{self.convert_size(self.get_folder_size())}")

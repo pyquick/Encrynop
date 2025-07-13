@@ -1,3 +1,4 @@
+from ast import excepthandler
 from doctest import FAIL_FAST
 import re
 from encry.as1.used  import *
@@ -254,7 +255,7 @@ class Convert_Dec:
             self.data=str(self.data)
             log_info.auto("Convert data to str successfully")
             if(len(self.data)%3!=0):
-                log_info.auto("Data length is not enough,will be add 0")
+                log_info.auto("Data length is not enough,will be add 0 (self.data length)")
                 while(True):
                     self.data="0"+self.data
                     log_info.auto(f"Doing self.data=\"0\"+self.data task...")
@@ -268,10 +269,20 @@ class Convert_Dec:
             for i in range(len(self.data)):
                 self.crashe[self.x]+=self.data[i]
                 log_info.auto(f"Change self.crashe[self.x] and self.data[i]")
-                log_info.auto(f"self.crashe[self.x]:{self.crashe[self.x]}self.data[i]:{self.data[i]}")
+                log_info.auto(f"self.crashe[self.x]:{self.crashe[self.x]}  self.data[i]:{self.data[i]}")
                 if(i+1)%3==0 and i!=len(self.data)-1:
                     self.x+=1
                     self.crashe.append("")
+            try:
+                self.crashe.remove("")
+            except:
+                pass
+            log_info.auto(f"self.crashe:{self.crashe}")
+            for i in range(len(self.crashe)):
+                self.crashe[i]=str(int(self.crashe[i]))
+                log_info.auto(f"convert self.crashe[i] to out 0..")
+                log_info.auto(f"self.crashe[i]:{self.crashe[i]}")
+            log_info.auto(f"self.crashe:{self.crashe}")
             for i in range(len(self.crashe)):
                 self.fun=str(int(self.crashe[i]))
                 while(len(self.fun)<4):
@@ -279,7 +290,12 @@ class Convert_Dec:
                     self.fun="0"+self.fun
                     log_info.auto("Adding 0")
                 log_info.auto(f"self.fun:{self.fun}")
-                self.result.append(lookup[self.fun])
+                self.fun=str(self.fun)
+                self.crashe[i]=self.fun
+            log_info.auto(f"self.crashe:{self.crashe}")
+            for i in range(len(self.crashe)):
+                
+                self.result.append(lookup[str(self.crashe[i])])
                 log_info.auto(f"self.result.append:[{lookup[self.crashe[i]]}]")
                 log_info.auto(f"self.result:{self.result}")
             for i in self.result:

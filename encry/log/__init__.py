@@ -2,9 +2,18 @@ from encry.panic.panic import *
 from .log import *
 from .limit import *
 import threading
-a=threading.Thread(target=Limit_Size(136314880,36700160).limit_size())
-a.start()
-a.join()
+import sys
+from encry.utils.events import shutdown_event
+import time
+def hook():
+    
+    while not shutdown_event.is_set():
+        a=threading.Thread(target=Limit_Size(136314880,36700160).limit_size())
+        a.start()
+        a.join()
+        time.sleep(0.1)
+    log_manager = LogManager("__INIT____HOOK", "INFO")
+    log_manager.info("Shutdown event detected. Exiting hook thread.")
 def loinf():
     try:
         info=LogManager("__INIT____INFO","INFO")
@@ -50,9 +59,10 @@ def bug_re():
     result=[loinf(),lowar(),loerr(),lode(),loal()]
     for i in result:
         if i==1:
-            raise Panic("__INIT__ bug_re","SOME PROBLEMS",4,"UNKNOWN").raise_panic()
+            Panic("__INIT__ bug_re","SOME PROBLEMS",4,"UNKNOWN").raise_panic()
         else:
             pass
     return None
-bug_re()
+threading.Thread(target=bug_re).start()
+threading.Thread(target=hook).start()
     

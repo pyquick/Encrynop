@@ -291,16 +291,18 @@ def decry_max(data)->bytes:
         raise Panic("decry_max",str(e),4,"Exception").raise_panic()
 def encry_max_auto(data,tem=int)->bytes:
     try:
+        import time
         log=LogManager("encry_max_auto","INFO")
-        if(tem>=4 and tem<12):
+        if(tem>=4 and tem<2147483647):
             lin_log=LogManager("encry_max_auto_lin","WARNING")
             lin_log.auto("Temperature is too high")
             Panic("encry_max_auto","Temperature is too high",1,"WARNING").raise_panic()
-        elif (tem>=12):
-            
+            time.sleep(2)
+        elif (tem>=2147483647):
             lin_log=LogManager("encry_max_auto_lin","ERROR")
-            lin_log.auto("Temperature is too high")
-            raise Panic("encry_max_auto","Temperature is toooooo high",3,"WARNING").raise_panic()
+            lin_log.auto("Temperature is toooooo high")
+            Panic("encry_max_auto","Temperature is toooooo high",2,"ERROR").raise_panic()
+            time.sleep(10)
         if not isinstance(data, bytes):
             log.auto("data is not bytes, encoding...")
             data=data.encode()

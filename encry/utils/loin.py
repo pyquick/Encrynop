@@ -1,6 +1,7 @@
 import logging,getpass,os,multiprocessing
 from encry.panic.panic import *
 import os
+#log阉割版
 if os.name == 'nt':  
     import colorama
     colorama.init()  
@@ -28,12 +29,9 @@ class ColoredFormatter(ProcessNameFormatter):
             return f"{color}{formatted_message}{self.RESET_CODE}"
         return formatted_message
 class LogManager:
-    
-    def __init__(self,log_name,log_level="INFO",write_info=False,no_files=False,no_console=False):
+    def __init__(self,log_name,log_level="INFO",write_info=False):
         self.log_level = log_level.upper()#日志级别
         self.write_info=write_info#是否写入INFO级别日志
-        self.no_files=no_files#是否创建日志文件
-        self.no_console=no_console#是否输出到控制台
         self.log_name = log_name#日志名称(通常为函数)
         if(log_level is None or (log_level!="DEBUG" and log_level!="INFO" and log_level!="WARNING" and log_level!="ERROR" and log_level!="CRITICAL")):
             raise Panic("LogManager__init__",f"Log_level must str,not None.",3,"LogManager").raise_panic()
@@ -67,7 +65,7 @@ class LogManager:
             self.file_handler.setFormatter(self.file_formatter)
         # 创建控制台处理器
         self.console_formatter = ColoredFormatter(
-            '%(asctime)s - %(process_name)s - %(name)s - %(message)s - %(levelname)s'
+            '%(asctime)s - %(process_name)s - %(name)s - %(message)s - %(levelname)s - powered by loin'
         )
         self.console_handler = logging.StreamHandler()
         self.console_handler.setLevel(self.LEVELS[self.log_level])
@@ -97,22 +95,3 @@ class LogManager:
         if(self.log_level!="critical".upper()):
             raise Panic("critical",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.critical(msg)
-    def auto(self, msg):
-        if self.log_level is  None:
-            raise Panic("auto",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
-        elif(self.log_level=="DEBUG".upper()):
-            self.logger.debug(msg)
-        elif(self.log_level=="info".upper()):
-            self.logger.info(msg)
-        elif(self.log_level=="warning".upper()):
-            self.logger.warning(msg)
-        elif(self.log_level=="error".upper()):
-            self.logger.error(msg)
-        elif(self.log_level=="critical".upper()):
-            self.logger.critical(msg)
-        else:
-            raise Panic("auto",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
-    
-
-    
-

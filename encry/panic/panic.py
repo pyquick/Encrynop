@@ -1,5 +1,7 @@
+from contextlib import redirect_stderr
 from termcolor import cprint
 from colorama import init
+from encry.utils.events import shutdown_event
 init()
 #NEW:
 #Panic: (FROM ENCRY.PANIC.PANIC)
@@ -8,7 +10,7 @@ init()
 #THis Panic is very serious.
 #Please report https://github.com/pyquick/pyquick/issues/ to report this panic.
 class Panic(Exception):
-    def __init__(self,name,log,level=int,type_panic=str):
+    def __init__(self,name,log,level: int,type_panic: str):
         self.log =log
         self.name=name
         self.level =level
@@ -25,24 +27,20 @@ class Panic(Exception):
             3:'Serious',
             4:'Panic',
         }
-#NEW:
-#Panic: (FROM ENCRY.PANIC.PANIC)
-#LEVEL: 1-Warning,2-Error,3-Serious,4-Panic
-#SOURCE: xxx(func)
-# XXXERROR: XXX
-#THis Panic is very serious.
-#Please report https://github.com/pyquick/pyquick/issues/ to report this panic.
-        #cprint(f'Panic:{self.type_panic}({level_lookup[self.level]})[{self.name}]' ,'red',)
-        cprint("PANIC: (FROM ENCRY.PANIC.PANIC)",'red')
-        cprint(f"LEVEL: {level_lookup[self.level]}",'red')
-        cprint(f'SOURCE: {self.name}','red')
+        color='red'
+        if self.level==1:
+            color='yellow'
+        cprint("PANIC: (FROM ENCRY.PANIC.PANIC)",color)
+        cprint(f"LEVEL: {level_lookup[self.level]}",color)
+        cprint(f'SOURCE: {self.name}',color)
         contact=self.panic(self.log)
-        cprint(f'{self.type_panic}:', 'red',None,["reverse","underline","blink"])
+        cprint(f'{self.type_panic}:', color,None,["reverse","underline","blink"])
         for i in contact:
-            cprint(i.strip(),'red',None,["reverse","underline","blink"])
-            
+            cprint(i.strip(),color,None,["reverse","underline","blink"])
         if self.level>=3:
-            cprint("This Panic is very serious.\nPlease report https://github.com/pyquick/pyquick/issues/ to report this panic.".strip(),'red',None)
+            cprint("Please report https://github.com/pyquick/pyquick/issues/ to report this panic.".strip(),color,None)
+            shutdown_event.set()
             exit(self.level)
+            
         else:
             return None
