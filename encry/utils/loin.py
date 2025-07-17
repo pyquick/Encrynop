@@ -28,7 +28,7 @@ class ColoredFormatter(ProcessNameFormatter):
         if color:
             return f"{color}{formatted_message}{self.RESET_CODE}"
         return formatted_message
-class LogManager:
+class LogManager_IN:
     def __init__(self,log_name,log_level="INFO",write_info=False):
         self.log_level = log_level.upper()#日志级别
         self.write_info=write_info#是否写入INFO级别日志

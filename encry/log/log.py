@@ -28,13 +28,17 @@ class ColoredFormatter(ProcessNameFormatter):
             return f"{color}{formatted_message}{self.RESET_CODE}"
         return formatted_message
 class LogManager:
-    
-    def __init__(self,log_name,log_level="INFO",write_info=False,no_files=False,no_console=False):
+    def __init__(self,log_name,log_level="INFO",write_info=False,no_files=False,no_console=False,no_debug=False,no_log=False):
+        
         self.log_level = log_level.upper()#日志级别
         self.write_info=write_info#是否写入INFO级别日志
         self.no_files=no_files#是否创建日志文件
         self.no_console=no_console#是否输出到控制台
         self.log_name = log_name#日志名称(通常为函数)
+        self.no_debug=no_debug#是否输出DEBUG级别日志(文件+控制台)
+        self.no_log=no_log#是否输出日志
+        if self.no_log:
+            return
         if(log_level is None or (log_level!="DEBUG" and log_level!="INFO" and log_level!="WARNING" and log_level!="ERROR" and log_level!="CRITICAL")):
             raise Panic("LogManager__init__",f"Log_level must str,not None.",3,"LogManager").raise_panic()
         # 日志级别映射
@@ -60,7 +64,12 @@ class LogManager:
         self.formatter = ProcessNameFormatter(
             '%(asctime)s - %(process_name)s - %(name)s  - %(levelname)s - %(message)s'   
         )
-        if self.log_level!="INFO".upper() or write_info:
+        if (self.log_level!="INFO".upper() or self.write_info) and not self.no_files and not self.no_log:
+            self.file_handler = logging.FileHandler(self.path)
+            self.file_handler.setLevel(self.LEVELS[self.log_level])
+            self.file_formatter = self.formatter
+            self.file_handler.setFormatter(self.file_formatter)
+        elif self.log_level=="DEBUG".upper() and not self.no_files and not self.no_log and not self.no_debug:
             self.file_handler = logging.FileHandler(self.path)
             self.file_handler.setLevel(self.LEVELS[self.log_level])
             self.file_formatter = self.formatter
@@ -69,35 +78,49 @@ class LogManager:
         self.console_formatter = ColoredFormatter(
             '%(asctime)s - %(process_name)s - %(name)s - %(message)s - %(levelname)s'
         )
-        self.console_handler = logging.StreamHandler()
-        self.console_handler.setLevel(self.LEVELS[self.log_level])
-        self.console_handler.setFormatter(self.console_formatter)
+        if(not self.no_console and not self.no_log):    
+            self.console_handler = logging.StreamHandler()
+            self.console_handler.setLevel(self.LEVELS[self.log_level])
+            self.console_handler.setFormatter(self.console_formatter)
         # 添加处理器
-        if self.log_level!="INFO".upper() or write_info:
+        if (self.log_level!="INFO".upper() or write_info) and not self.no_files:
             self.logger.addHandler(self.file_handler)
         #self.logger.addHandler(self.file_handler)
-        self.logger.addHandler(self.console_handler)
+        if(not self.no_console and not self.no_log):
+            self.logger.addHandler(self.console_handler)
     def info(self, msg):
+        if self.no_log:
+            return
         if(self.log_level!="info".upper() and self.log_level is not None):
             raise Panic("info",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.info(msg)
     def warning(self, msg):
+        if self.no_log:
+            return
         if(self.log_level!="warning".upper() and self.log_level is not None):
             raise Panic("warning",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.warning(msg)
     def error(self, msg):
+        if self.no_log:
+            return
         if(self.log_level!="error".upper() and self.log_level is not None):
             raise Panic("error",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.error(msg)
     def debug(self, msg):
+        if self.no_log:
+            return
         if(self.log_level!="debug".upper() and self.log_level is not None):
             raise Panic("debug",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.debug(msg)
     def critical(self, msg):
+        if self.no_log:
+            return
         if(self.log_level!="critical".upper()):
             raise Panic("critical",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         self.logger.critical(msg)
     def auto(self, msg):
+        if self.no_log:
+            return
         if self.log_level is  None:
             raise Panic("auto",f"Use incorrect log level.You:{self.log_level}",3,"LogManager").raise_panic()
         elif(self.log_level=="DEBUG".upper()):

@@ -154,6 +154,61 @@ def decry_high2(data=str):
         inf=LogManager(" %(func)s _ERROR" % {"func":func},"ERROR")
         inf.error(f"Some serious problems,{str(e)}")
         raise Panic("%(func)s"%{"func":func},f"Some serious peoblems:\n{str(e)}",4,"UNE").raise_panic()
+def encry_prof2(data=str):
+    try:
+        func=sys._getframe().f_code.co_name
+        inf=LogManager(" %(func)s _INFO" % {"func":func},"INFO")
+        inf.auto("init succeed.")
+        data=encry_high(data.encode()).decode()
+        inf.auto("encry data successfully.(1/8)")
+        data=encry_ascii(data)
+        inf.auto("convert data (to ascii) successfully.(2/8)")
+        data=encry_ascii(data)
+        inf.auto("convert data (to ascii) successfully.(3/8)")
+        data=encry_ascii(data)
+        inf.auto("convert data (to ascii) successfully.(4/8)")
+        #10-8-2
+        data=con_dec(data,16,14)
+        inf.auto("convert dec16 (to 8) successfully.(5/8)")
+        data=con_dec(data,14,8)
+        inf.auto("convert dec14 (to 8) successfully.(6/8)")
+        data=con_dec(data,8,4)
+        inf.auto("convert dec8 (to 4) successfully.(7/8)")
+        data=con_dec(data,4,2)
+        inf.auto("convert dec4 (to 2) successfully.(8/8)")
+        return data
+    except Exception as e:
+        func=sys._getframe().f_code.co_name
+        inf=LogManager(" %(func)s _ERROR" % {"func":func},"ERROR")
+        inf.error(f"Some serious problems,{str(e)}")
+        raise Panic("%(func)s"%{"func":func},f"Some serious peoblems:\n{str(e)}",4,"UNE").raise_panic()
+def decry_prof2(data=str):
+    try:
+        func=sys._getframe().f_code.co_name
+        inf=LogManager(" %(func)s _INFO" % {"func":func},"INFO")
+        inf.auto("init succeed.")
+        data=con_dec(data,2,4)
+        inf.auto("convert dec2 (to 4) successfully.(1/8)")
+        data=con_dec(data,4,8)
+        inf.auto("convert dec4 (to 8) successfully.(2/8)")
+        data=con_dec(data,8,14)
+        inf.auto("convert dec8 (to 14) successfully.(3/8)")
+        data=con_dec(data,14,16)
+        inf.auto("convert dec14 (to 16) successfully.(4/8)")
+        data=decry_ascii(data)
+        inf.auto("convert data (to ascii) successfully.(5/8)")
+        data=decry_ascii(data)
+        inf.auto("convert data (to ascii) successfully.(6/8)")
+        data=decry_ascii(data)
+        inf.auto("convert data (to ascii) successfully.(7/8)")
+        data=decry_high(data.encode()).decode()
+        inf.auto("decry data successfully.(8/8)")
+        return data
+    except Exception as e:
+        func=sys._getframe().f_code.co_name
+        inf=LogManager(" %(func)s _ERROR" % {"func":func},"ERROR")
+        inf.error(f"Some serious problems,{str(e)}")
+        raise Panic("%(func)s"%{"func":func},f"Some serious peoblems:\n{str(e)}",4,"UNE").raise_panic()
 def encry_max2(data=str):
     try:
         fun=sys._getframe().f_code.co_name
@@ -180,6 +235,8 @@ def encry_max2(data=str):
         inf=LogManager(" %(func)s _ERROR" % {"func":fun},"ERROR")
         inf.error(f"Some serious problems,{str(e)}")
         raise Panic("%(func)s"%{"func":fun},f"Some serious peoblems:\n{str(e)}",4,"UNE").raise_panic()
+
+
 def decry_max2(data=str):
     try:
         fun=sys._getframe().f_code.co_name

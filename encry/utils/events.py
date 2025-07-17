@@ -10,7 +10,7 @@ shutdown_event = threading.Event()
 # Define signal handler function
 def _signal_handler(signum, frame):
     time.sleep(0.2)
-    init_logger = LogManager("_signal_handler", "INFO")
+    init_logger = LogManager_IN("_signal_handler", "INFO")
     init_logger.info("Ctrl+C (SIGINT) detected. Setting global shutdown event...")
     shutdown_event.set()
     init_logger.info("Global shutdown event has been set.")
